@@ -1,0 +1,40 @@
+<launch>
+  <!-- <arg name="device" default="plughw:1,0"/> -->
+  <arg name="device" default=""/>
+  <arg name="ns" default="audio"/>
+  <arg name="dst" default="alsasink"/>
+  <arg name="do_timestamp" default="false"/>
+  <arg name="format" default="mp3"/>
+  <arg name="channels" default="2"/>
+  <arg name="sample_rate" default="16000"/>
+  <arg name="sample_format" default="S16LE"/>
+  <arg name="left_pan" default="-1"/>
+  <arg name="right_pan" default="1"/>
+
+
+  <group ns="$(arg ns)">    
+    <node name="audio_play_right" pkg="audio_play" type="stereo_play" output="screen">
+      <param name="device" value="$(arg device)"/>
+      <param name="dst" value="$(arg dst)"/>
+      <param name="do_timestamp" value="$(arg do_timestamp)"/>
+      <param name="format" value="$(arg format)"/>
+      <param name="channels" value="$(arg channels)"/>
+      <param name="sample_rate" value="$(arg sample_rate)"/>
+      <param name="sample_format" value="$(arg sample_format)"/>
+      <param name="pan_value" value="$(arg right_pan)"/> 
+      <param name="output_channel_tn" value="/audio/right_channel"/>
+    </node>
+    <node name="audio_play_left" pkg="audio_play" type="stereo_play" output="screen">
+      <param name="device" value="$(arg device)"/>
+      <param name="dst" value="$(arg dst)"/>
+      <param name="do_timestamp" value="$(arg do_timestamp)"/>
+      <param name="format" value="$(arg format)"/>
+      <param name="channels" value="$(arg channels)"/>
+      <param name="sample_rate" value="$(arg sample_rate)"/>
+      <param name="sample_format" value="$(arg sample_format)"/>
+      <param name="pan_value" value="$(arg left_pan)"/>
+      <param name="output_channel_tn" value="/audio/left_channel"/>
+    </node>
+
+  </group>
+</launch>

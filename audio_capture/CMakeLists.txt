@@ -17,6 +17,10 @@ add_executable(audio_capture src/audio_capture.cpp)
 target_link_libraries(audio_capture ${catkin_LIBRARIES} ${GST1.0_LIBRARIES} ${Boost_LIBRARIES})
 add_dependencies(audio_capture ${catkin_EXPORTED_TARGETS})
 
+add_executable(stereo_capture src/stereo_capture.cpp)
+target_link_libraries(stereo_capture ${catkin_LIBRARIES} ${GST1.0_LIBRARIES} ${Boost_LIBRARIES})
+add_dependencies(stereo_capture ${catkin_EXPORTED_TARGETS})
+
 install(TARGETS audio_capture
    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
 
