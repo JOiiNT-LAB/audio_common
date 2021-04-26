@@ -43,7 +43,7 @@ namespace audio_transport
         ros::param::param<std::string>("~output_channel_tn", output_channel_tn, "/audio/output_channel_disconnected");
 
         
-        _sub_left = _nh.subscribe(output_channel_tn, 10, &RosGstPlay::onAudio, this);
+        _sub_left = _nh.subscribe(output_channel_tn, 10, &RosGstPlay::onAudio, this, ros::TransportHints().udp());
 
         _loop = g_main_loop_new(NULL, false);
 
